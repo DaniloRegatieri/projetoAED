@@ -1,0 +1,102 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// estrutura do nó da pilha 
+struct No{
+    int valor; // valor contido no nó
+    No* ptrProximo; // ponteiro que aponta para o proximo nó
+};
+
+//classe pilha
+class Pilha{
+    private:
+    No* ptrTopo; //ponteiro que aponta para o Topo da pilha
+
+    public:
+    Pilha(){ //construtor da pilha
+        ptrTopo = nullptr;
+    }
+
+    /*
+    métodos
+    */
+
+    //método que verifica se a fila esta vazia
+    bool estaVazia(){
+        if (ptrTopo == nullptr){
+            return true;
+        }        else{
+            return false;
+        }
+    }
+
+    //método que adiciona um elemento ao ptrTopo da fila
+    void adicionaElemento(int sValor){
+        No* novo = new No();
+        novo->valor = sValor;
+        novo->ptrProximo = ptrTopo;
+        ptrTopo = novo;
+    }
+
+    //método para remover um item do ptrTopo da fila
+    void removeElemento(){
+        if (!estaVazia){
+            int X = ptrTopo->valor;
+            No* aux = ptrTopo;
+            ptrTopo = ptrTopo->ptrProximo;
+            delete aux;
+            cout << "Elemento: " << X << " deletado com sucesso." << endl;
+        } else{
+            cout << "No esta vazio." << endl;
+        }
+
+    }
+
+    //método para mostrar elemento do topo
+    int elementoTopo (){
+        if (!estaVazia){
+            return ptrTopo->valor;
+        }else{
+            cout << " A pilha está vazia! ";
+            return -1;
+        }
+    }
+
+    //método para varrer a pilha
+    void varrerPilha(){
+        No* aux = ptrTopo;
+
+        if(aux == nullptr){
+            cout << "Pilha vazia." << endl;
+            return;
+        } 
+
+        while (aux!=nullptr){
+            cout << aux->valor << " -> " ;
+            aux = aux->ptrProximo;
+        }
+
+        cout << " null " << endl;
+    }
+
+};
+
+int main(){
+    int y, numElementos;
+    Pilha p1;
+
+    cout << "\nDigite o numero de elementos: ";
+    cin >> numElementos;
+
+    for (int i = 0; i<numElementos; i++){
+        cout << "\n Elemento do topo: " << p1.elementoTopo() << endl;
+        cin >> y;
+        p1.adicionaElemento(y);
+    }
+
+    p1.removeElemento();
+
+
+}
