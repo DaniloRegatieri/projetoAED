@@ -42,7 +42,7 @@ class Pilha{
 
     //método para remover um item do ptrTopo da fila
     void removeElemento(){
-        if (!estaVazia){
+        if (!estaVazia()){
             int X = ptrTopo->valor;
             No* aux = ptrTopo;
             ptrTopo = ptrTopo->ptrProximo;
@@ -56,10 +56,10 @@ class Pilha{
 
     //método para mostrar elemento do topo
     int elementoTopo (){
-        if (!estaVazia){
+        if (!estaVazia()){
             return ptrTopo->valor;
         }else{
-            cout << " A pilha está vazia! ";
+            cout << " A pilha vazia ";
             return -1;
         }
     }
@@ -78,7 +78,7 @@ class Pilha{
             aux = aux->ptrProximo;
         }
 
-        cout << " null " << endl;
+        cout << "null" << endl;
     }
 
 };
@@ -91,12 +91,17 @@ int main(){
     cin >> numElementos;
 
     for (int i = 0; i<numElementos; i++){
-        cout << "\n Elemento do topo: " << p1.elementoTopo() << endl;
+        cout << "\nElemento do topo: " << p1.elementoTopo() << endl;
+        cout << "Elemento a ser adicionado: ";
         cin >> y;
         p1.adicionaElemento(y);
     }
 
+    p1.varrerPilha();
+
+    cout << "O elemento do topo e: " << p1.elementoTopo() << endl;
+    cout << "Deletando o elemento do topo..." << endl;
     p1.removeElemento();
 
-
+    p1.varrerPilha();
 }
