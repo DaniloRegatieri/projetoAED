@@ -1,0 +1,12 @@
+{
+  "name": "C++ Dev Container",
+  "image": "mcr.microsoft.com/devcontainers/cpp:latest",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.cpptools",
+        "ms-vscode.cpptools-extension-pack"
+      ]
+    }
+  }
+}
