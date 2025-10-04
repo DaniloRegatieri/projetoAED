@@ -3,6 +3,10 @@
 #include <iostream>
 #include <string>
 
+class baralho{
+    
+};
+
 int main(){
 
 }
