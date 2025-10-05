@@ -9,6 +9,8 @@
                 "-g",
                 "main.cpp",
                 "Baralho.cpp",
+                "Carta.cpp",
+                "Jogador.cpp",
                 "-o",
                 "main"
             ],

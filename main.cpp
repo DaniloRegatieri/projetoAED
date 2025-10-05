@@ -5,6 +5,7 @@
 #include <random>     // Para random_device, mt19937 e uniform_int_distribution
 
 #include "Baralho.h"
+#include "Carta.h"
 
 using namespace std;
 
@@ -25,7 +26,7 @@ int main() {
     cout << "--- BARALHO ORDENADO (EM ORDEM DE INSERCAO) ---" << endl;
     meuBaralho.varrerPilha();
 
-    meuBaralho.adicionaElemento(Carta(5, "Vermelho"));
+    meuBaralho.adicionaElemento(Carta("5", "Vermelho"));
 
     meuBaralho.removeElemento();
 

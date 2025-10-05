@@ -16,5 +16,5 @@ string Carta::getCor() const {
 
 // Implementação do método para mostrar
 void Carta::mostrar() const {
-    cout << "Carta: " << this->numero << " " << this->cor;
+    cout << "Carta: " << this->numero << " " << this->cor << endl;
 }

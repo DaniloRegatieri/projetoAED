@@ -13,6 +13,8 @@ Baralho::Baralho(){
     ptrTopo = nullptr;
 }
 
+//destrutor 
+
 Baralho::~Baralho(){
     if (estaVazia()) {
         cout << "O baralho esta vazio." << endl;
@@ -122,7 +124,6 @@ void Baralho::varrerPilha(){
     }
     while (aux != nullptr) {
         aux->carta.mostrar();
-        cout << endl;
         aux = aux->ptrProximo;
     }
 }
@@ -155,7 +156,7 @@ void Baralho::embaralhar() {
     nos.back()->ptrProximo = nullptr; 
 }
 
-//método para remover um item do ptrTopo da fila
+//método para remover todos do ptrTopo da fila
 void Baralho::esvaziaPilha() {
      if (estaVazia()) {
         cout << "O baralho esta vazio." << endl;
