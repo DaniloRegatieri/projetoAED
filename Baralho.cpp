@@ -84,7 +84,7 @@ void Baralho::criarBaralho(){
     for(int l = 0; l<4; l++){
         for(int i = 0; i<11; i++){
             adicionaElemento(i, corLocal[l]);
-            matrizCartas[0][index] = matrizCartas[0][index] = to_string(i);  // números como string para simplicidade
+            matrizCartas[0][index] = to_string(i);  // números como string para simplicidade
             matrizCartas[1][index] = corLocal[l];
             index++;
         }
