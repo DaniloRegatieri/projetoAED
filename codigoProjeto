@@ -9,10 +9,13 @@
 using namespace std;
 
 int main(){
-    Baralho monte;
-    monte.criarBaralho();
-    monte.varrerPilha();
+    Baralho monteInicial;
+    monteInicial.criarBaralho();
+    monteInicial.varrerPilha();
 
-    monte.embaralha();
-    monte.imprimeMatriz();
+    monteInicial.embaralha();
+    monteInicial.imprimeMatriz();
+
+    Baralho monteEmbaralhado;
+    monteEmbaralhado.converteMatriz(monteInicial);
 }

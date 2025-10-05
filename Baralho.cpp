@@ -28,7 +28,7 @@ bool Baralho::estaVazia(){
 
 //método que adiciona um elemento ao ptrTopo da fila
 void Baralho::adicionaElemento(int snumCarta, string scorCarta){
-    No* novo = new No();
+    Node* novo = new Node();
     novo->numCarta = snumCarta;
     novo->corCarta = scorCarta;
     novo->ptrProximo = ptrTopo;
@@ -36,16 +36,15 @@ void Baralho::adicionaElemento(int snumCarta, string scorCarta){
 }
 
 //método para remover um item do ptrTopo da fila
-void Baralho::removeElemento(){
+void Baralho::removeElemento(int& snumCarta, string& scorCarta){
     if (!estaVazia()){
-        int numX = ptrTopo->numCarta;
-        string corX = ptrTopo->corCarta;
-        No* aux = ptrTopo;
+        snumCarta = ptrTopo->numCarta;
+        scorCarta = ptrTopo->corCarta;
+        Node* aux = ptrTopo;
         ptrTopo = ptrTopo->ptrProximo;
         delete aux;
-        cout << "Carta " << numX << corX << " deletado com sucesso." << endl;
     } else{
-        cout << "No esta vazio." << endl;
+        cout << "Baralho esta vazio." << endl;
     }
 
 }
@@ -94,7 +93,7 @@ void Baralho::criarBaralho(){
 
 //método para varrer a pilha
 void Baralho::varrerPilha(){
-    No* aux = ptrTopo;
+    Node* aux = ptrTopo;
 
     if(aux == nullptr){
         cout << "Pilha vazia." << endl;
@@ -129,4 +128,31 @@ void Baralho::imprimeMatriz(){
     for(int i=0;i<44;i++){
         cout << matrizCartas[0][i] << " - " << matrizCartas[1][i] << endl;
     }
+}
+
+//método para remover um item do ptrTopo da fila
+void Baralho::esvaziaPilha() {
+    while (!estaVazia()) {
+        int numX = ptrTopo->numCarta;
+        string corX = ptrTopo->corCarta;
+
+        Node* aux = ptrTopo;
+        ptrTopo = ptrTopo->ptrProximo;
+
+        delete aux;
+
+        cout << "Carta " << numX << " " << corX << " deletada com sucesso." << endl;
+    }
+    cout << "Pilha esvaziada completamente." << endl;
+}
+
+
+void Baralho::converteMatriz(Baralho& b){
+    for(int i = 0; i < 44; i++){
+        adicionaElemento(stoi(b.matrizCartas[0][i]), b.matrizCartas[1][i]);
+    }
+
+    cout << "\n\nPilha embaralhada:\n" << endl;
+
+    varrerPilha();
 }
