@@ -1,22 +1,18 @@
 {
-    "version": "2.0.0",
-    "tasks": [
+    "version": "0.2.0",
+    "configurations": [
         {
-            "label": "build",
-            "type": "shell",
-            "command": "g++",
-            "args": [
-                "-g",
-                "main.cpp",
-                "Baralho.cpp",
-                "-o",
-                "main"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "problemMatcher": ["$gcc"]
+            "name": "C++ Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/main",    // executável
+            "args": [],                              // argumentos do programa
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",             // diretório de trabalho
+            "environment": [],
+            "externalConsole": false,                // console interno
+            "MIMode": "gdb",
+            "preLaunchTask": "build"                 // executa a task de build antes
         }
-    ]git a
+    ]
 }
