@@ -14,7 +14,19 @@ Baralho::Baralho(){
 }
 
 Baralho::~Baralho(){
-    esvaziaPilha();
+    if (estaVazia()) {
+        cout << "O baralho esta vazio." << endl;
+        return;
+    }
+    else{
+        while (!estaVazia()) {
+            Carta cartaRemovida = ptrTopo->carta;
+            Node* aux = ptrTopo;
+            ptrTopo = ptrTopo->ptrProximo;
+
+            delete aux;
+        }
+    }
 }
 
 /*
@@ -23,13 +35,26 @@ métodos
 
 void Baralho::criarBaralho(){
     string cores[] = {"verde", "vermelho", "azul", "amarelo"};
+    string especial[] = {"bloqueio", "+2", "inverter"};
     for (const string& cor : cores) {
         for (int i = 0; i <= 10; i++) {
             // Cria um objeto Carta
-            Carta novaCarta(i, cor);
+            Carta novaCarta(to_string(i), cor);
             // Adiciona à pilha usando a sua lógica
             adicionaElemento(novaCarta);
+            if(i != 0){
+                adicionaElemento(novaCarta);
+            }
         }
+        for(const string& esp : especial) {
+            Carta novaCartaEspecial(esp, cor);
+            adicionaElemento(novaCartaEspecial);
+            adicionaElemento(novaCartaEspecial);
+        }
+        Carta novaCartaCoringa1("+4", "preto");
+        adicionaElemento(novaCartaCoringa1);
+        Carta novaCartaCoringa2("escolha_cor", "preto");
+        adicionaElemento(novaCartaCoringa2);
     }
 }
 
@@ -62,12 +87,12 @@ void Baralho::removeElemento(){
 }
 
 //método para mostrar cor do topo
-int Baralho::numTopo(){
+string Baralho::numTopo(){
     if (!estaVazia()){
         return ptrTopo->carta.getNumero();
     }else{
         cout << " A pilha vazia ";
-        return -1;
+        return "-1";
     }
 }
 
@@ -85,7 +110,7 @@ string Baralho::corTopo(){
 //método para mostrar elemento do topo
 string Baralho::elementoTopo(){
     Carta cartaTopo = ptrTopo->carta;
-    return "Carta do topo: " + to_string(cartaTopo.getNumero()) + " " + cartaTopo.getCor();
+    return "Carta do topo: " + cartaTopo.getNumero() + " " + cartaTopo.getCor();
 }
 
 //método para varrer a pilha
