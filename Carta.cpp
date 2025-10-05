@@ -1,12 +1,12 @@
 #include "Carta.h"
 
 // Implementação do Construtor
-Carta::Carta(int num, const string& c) : numero(num), cor(c) {
+Carta::Carta(const string& num, const string& c) : numero(num), cor(c) {
     // O corpo pode ser vazio, pois a lista de inicialização já fez o trabalho
 }
 
 // Implementação dos Getters
-int Carta::getNumero() const {
+string Carta::getNumero() const {
     return this->numero;
 }
 

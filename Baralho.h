@@ -37,7 +37,7 @@ public:
     void removeElemento();
 
     //método para mostrar cor do topo
-    int numTopo();
+    string numTopo();
 
     //método para mostrar cor do topo
     string corTopo();
