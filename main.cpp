@@ -8,14 +8,39 @@
 
 using namespace std;
 
-int main(){
-    Baralho monteInicial;
-    monteInicial.criarBaralho();
-    monteInicial.varrerPilha();
+int main() {
+    // 1. Cria um baralho (que começa vazio)
+    Baralho meuBaralho;
 
-    monteInicial.embaralha();
-    monteInicial.imprimeMatriz();
+    if(meuBaralho.estaVazia()){
+        cout << "O baralho esta vazio." << endl;
+    } else{
+        cout << "O baralho nao esta vazio." << endl;
+    }
+    // 2. Preenche o baralho com as cartas padrão
+    meuBaralho.criarBaralho();
+    
+    cout<<"Baralho criado\n";
 
-    Baralho monteEmbaralhado;
-    monteEmbaralhado.converteMatriz(monteInicial);
+    cout << "--- BARALHO ORDENADO (EM ORDEM DE INSERCAO) ---" << endl;
+    meuBaralho.varrerPilha();
+
+    meuBaralho.adicionaElemento(Carta(5, "Vermelho"));
+
+    meuBaralho.removeElemento();
+
+    std::cout << "Numero Topo: " << meuBaralho.numTopo() << std::endl;
+    std::cout << "Cor Topo: " << meuBaralho.corTopo() << std::endl;
+    std::cout << "Carta Topo: " << meuBaralho.elementoTopo() << std::endl;
+
+    // 3. Embaralha as cartas
+    cout << "\n... Embaralhando as cartas ...\n" << endl;
+    meuBaralho.embaralhar();
+
+    cout << "--- BARALHO EMBARALHADO ---" << endl;
+    meuBaralho.varrerPilha();
+
+    meuBaralho.esvaziaPilha();
+
+    return 0; // O destrutor do ~Baralho() será chamado automaticamente aqui
 }

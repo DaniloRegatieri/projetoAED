@@ -13,9 +13,25 @@ Baralho::Baralho(){
     ptrTopo = nullptr;
 }
 
+Baralho::~Baralho(){
+    esvaziaPilha();
+}
+
 /*
 métodos
 */
+
+void Baralho::criarBaralho(){
+    string cores[] = {"verde", "vermelho", "azul", "amarelo"};
+    for (const string& cor : cores) {
+        for (int i = 0; i <= 10; i++) {
+            // Cria um objeto Carta
+            Carta novaCarta(i, cor);
+            // Adiciona à pilha usando a sua lógica
+            adicionaElemento(novaCarta);
+        }
+    }
+}
 
 //método que verifica se a fila esta vazia
 bool Baralho::estaVazia(){
@@ -27,19 +43,15 @@ bool Baralho::estaVazia(){
 }
 
 //método que adiciona um elemento ao ptrTopo da fila
-void Baralho::adicionaElemento(int snumCarta, string scorCarta){
-    Node* novo = new Node();
-    novo->numCarta = snumCarta;
-    novo->corCarta = scorCarta;
+void Baralho::adicionaElemento(const Carta& novaCarta) {
+    Node* novo = new Node(novaCarta); // Cria um novo nó já com a carta
     novo->ptrProximo = ptrTopo;
     ptrTopo = novo;
 }
 
 //método para remover um item do ptrTopo da fila
-void Baralho::removeElemento(int& snumCarta, string& scorCarta){
+void Baralho::removeElemento(){
     if (!estaVazia()){
-        snumCarta = ptrTopo->numCarta;
-        scorCarta = ptrTopo->corCarta;
         Node* aux = ptrTopo;
         ptrTopo = ptrTopo->ptrProximo;
         delete aux;
@@ -52,7 +64,7 @@ void Baralho::removeElemento(int& snumCarta, string& scorCarta){
 //método para mostrar cor do topo
 int Baralho::numTopo(){
     if (!estaVazia()){
-        return ptrTopo->numCarta;
+        return ptrTopo->carta.getNumero();
     }else{
         cout << " A pilha vazia ";
         return -1;
@@ -62,7 +74,7 @@ int Baralho::numTopo(){
 //método para mostrar cor do topo
 string Baralho::corTopo(){
     if (!estaVazia()){
-        return ptrTopo->corCarta;
+        return ptrTopo->carta.getCor();
     }else{
         cout << " A pilha vazia ";
         return "-1";
@@ -71,88 +83,69 @@ string Baralho::corTopo(){
 
  
 //método para mostrar elemento do topo
-void Baralho::elementoTopo(){
-    cartaTopo[0] = numTopo();
-    cartaTopo[1] = corTopo();
-
-    cout << "Carta do topo: " << cartaTopo[0] << cartaTopo[1] << endl;
-}
-
-void Baralho::criarBaralho(){
-    string corLocal[4] = {"verde", "vermelho", "azul", "amarelo"};
-    int index = 0; 
-    for(int l = 0; l<4; l++){
-        for(int i = 0; i<11; i++){
-            adicionaElemento(i, corLocal[l]);
-            matrizCartas[0][index] = to_string(i);  // números como string para simplicidade
-            matrizCartas[1][index] = corLocal[l];
-            index++;
-        }
-    }   
+string Baralho::elementoTopo(){
+    Carta cartaTopo = ptrTopo->carta;
+    return "Carta do topo: " + to_string(cartaTopo.getNumero()) + " " + cartaTopo.getCor();
 }
 
 //método para varrer a pilha
 void Baralho::varrerPilha(){
     Node* aux = ptrTopo;
-
-    if(aux == nullptr){
-        cout << "Pilha vazia." << endl;
+    if (aux == nullptr) {
+        cout << "O baralho esta vazio." << endl;
         return;
-    } 
-
-    while (aux!=nullptr){
-        cout << aux->numCarta << " " << aux->corCarta << "\n -> \n" ;
+    }
+    while (aux != nullptr) {
+        aux->carta.mostrar();
+        cout << endl;
         aux = aux->ptrProximo;
     }
-
-    cout << "null" << endl;
 }
 
-void Baralho::embaralha(){
-    // Embaralhar as colunas
-    random_device rd;
-    mt19937 g(rd());
-
-    for(int i = 43; i > 0; i--){ // algoritmo Fisher-Yates
-        uniform_int_distribution<int> dist(0, i);
-        int j = dist(g);
-
-        // Trocar coluna i com coluna j
-        swap(matrizCartas[0][i], matrizCartas[0][j]);
-        swap(matrizCartas[1][i], matrizCartas[1][j]);
+void Baralho::embaralhar() {
+    // Não faz nada se a pilha estiver vazia ou tiver apenas um elemento
+    if (ptrTopo == nullptr || ptrTopo->ptrProximo == nullptr) {
+        return;
     }
-}
 
-//método para imprimir a matriz embaralhada:
-void Baralho::imprimeMatriz(){
-    for(int i=0;i<44;i++){
-        cout << matrizCartas[0][i] << " - " << matrizCartas[1][i] << endl;
+    // 1. Copiar os ponteiros (endereços) dos nós para um vetor
+    std::vector<Node*> nos;
+    Node* atual = ptrTopo;
+    while (atual != nullptr) {
+        nos.push_back(atual);
+        atual = atual->ptrProximo;
     }
+
+    // 2. Embaralhar o vetor de ponteiros
+    std::random_device rd;
+    std::mt19937 g(rd());
+    std::shuffle(nos.begin(), nos.end(), g);
+
+    // 3. Religar os nós na nova ordem
+    ptrTopo = nos[0]; // O novo topo é o primeiro ponteiro do vetor embaralhado
+    for (size_t i = 0; i < nos.size() - 1; ++i) {
+        nos[i]->ptrProximo = nos[i+1]; // O nó atual aponta para o próximo da lista embaralhada
+    }
+    // O último nó da nova lista deve apontar para nullptr
+    nos.back()->ptrProximo = nullptr; 
 }
 
 //método para remover um item do ptrTopo da fila
 void Baralho::esvaziaPilha() {
-    while (!estaVazia()) {
-        int numX = ptrTopo->numCarta;
-        string corX = ptrTopo->corCarta;
-
-        Node* aux = ptrTopo;
-        ptrTopo = ptrTopo->ptrProximo;
-
-        delete aux;
-
-        cout << "Carta " << numX << " " << corX << " deletada com sucesso." << endl;
+     if (estaVazia()) {
+        cout << "O baralho esta vazio." << endl;
+        return;
     }
-    cout << "Pilha esvaziada completamente." << endl;
-}
+    else{
+        while (!estaVazia()) {
+            Carta cartaRemovida = ptrTopo->carta;
+            Node* aux = ptrTopo;
+            ptrTopo = ptrTopo->ptrProximo;
 
+            delete aux;
 
-void Baralho::converteMatriz(Baralho& b){
-    for(int i = 0; i < 44; i++){
-        adicionaElemento(stoi(b.matrizCartas[0][i]), b.matrizCartas[1][i]);
+            cout << "Carta " << cartaRemovida.getNumero() << " " << cartaRemovida.getCor() << " deletada com sucesso." << endl;
+        }
+        cout << "Pilha esvaziada completamente." << endl;
     }
-
-    cout << "\n\nPilha embaralhada:\n" << endl;
-
-    varrerPilha();
 }
