@@ -4,8 +4,13 @@
 #include <algorithm>  // Para usar swap
 #include <random>     // Para random_device, mt19937 e uniform_int_distribution
 
-#include "Baralho.h"
-#include "Carta.h"
+#include "Baralho/Baralho.h" // temos "Baralho/Baralho.h", porque o arquivo Baralho.h está na pasta Baralho
+#include "Cartas/Carta.h" //temos "Cartas/Carta.h", porque o arquivo Carta.h está na pasta Cartas
+/*
+-----------------------------------------------------
+Provavelmente vai ter que fazer o mesmo com o jogador
+-----------------------------------------------------
+*/
 
 using namespace std;
 
