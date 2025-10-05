@@ -3,6 +3,125 @@
 #include <iostream>
 #include <string>
 
+using namespace std;
+
+struct No{
+    //dados contidos no nó
+    int numCarta;
+    string corCarta;
+    No* ptrProximo; //ponteiro que aponta para o proximo nó
+};
+
+class Baralho{
+private:
+    No* ptrTopo;
+    string cartaTopo[2];
+
+public:
+    Baralho(){
+        ptrTopo = nullptr;
+    }
+
+    /*
+    métodos
+    */
+
+    //método que verifica se a fila esta vazia
+    bool estaVazia(){
+        if (ptrTopo == nullptr){
+            return true;
+        }        else{
+            return false;
+        }
+    }
+
+    //método que adiciona um elemento ao ptrTopo da fila
+    void adicionaElemento(int snumCarta, string scorCarta){
+        No* novo = new No();
+        novo->numCarta = snumCarta;
+        novo->corCarta = scorCarta;
+        novo->ptrProximo = ptrTopo;
+        ptrTopo = novo;
+    }
+
+    //método para remover um item do ptrTopo da fila
+    void removeElemento(){
+        if (!estaVazia()){
+            int numX = ptrTopo->numCarta;
+            string corX = ptrTopo->corCarta;
+
+            No* aux = ptrTopo;
+            ptrTopo = ptrTopo->ptrProximo;
+            delete aux;
+            cout << "Carta " << numX << corX << " deletado com sucesso." << endl;
+        } else{
+            cout << "No esta vazio." << endl;
+        }
+
+    }
+
+    //método para mostrar cor do topo
+    int numTopo(){
+        if (!estaVazia()){
+            return ptrTopo->numCarta;
+        }else{
+            cout << " A pilha vazia ";
+            return -1;
+        }
+    }
+
+    //método para mostrar cor do topo
+    string corTopo(){
+        if (!estaVazia()){
+            return ptrTopo->corCarta;
+        }else{
+            cout << " A pilha vazia ";
+            return "-1";
+        }
+    }
+
+ 
+    //método para mostrar elemento do topo
+    void elementoTopo(){
+        cartaTopo[0] = numTopo();
+        cartaTopo[1] = corTopo();
+
+        cout << "Carta do topo: " << cartaTopo[0] << cartaTopo[1] << endl;
+    }
+
+    void criarBaralho(){
+        string corLocal[4] = {"verde", "vermelho", "azul", "amarelo"};
+        for(int l = 0; l<4; l++){
+            for(int i = 0; i<11; i++){
+                adicionaElemento(i, corLocal[l]);
+            }
+        }
+        
+    }
+
+    //método para varrer a pilha
+    void varrerPilha(){
+        No* aux = ptrTopo;
+
+        if(aux == nullptr){
+            cout << "Pilha vazia." << endl;
+            return;
+        } 
+
+        while (aux!=nullptr){
+            cout << aux->numCarta << " " << aux->corCarta << "\n -> \n" ;
+            aux = aux->ptrProximo;
+        }
+
+        cout << "null" << endl;
+    }
+
+
+};
+
 int main(){
+    Baralho monte;
+    monte.criarBaralho();
+    monte.varrerPilha();
 
 }

@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "aprendendopilha": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "codigoprojeto": "cpp"
     }
 }

@@ -55,7 +55,7 @@ class Pilha{
     }
 
     //método para mostrar elemento do topo
-    int elementoTopo (){
+    int elementoTopo(){
         if (!estaVazia()){
             return ptrTopo->valor;
         }else{
