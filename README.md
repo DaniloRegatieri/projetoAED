@@ -29,4 +29,4 @@ Projeto de AED - Uno
     4. Após revisão e aprovação, o merge será feito na main.
 
 
-
+### OBS: se você tiver alterado algo na sua branch e der: *pull origin main* + *merge main* você **NÂO** perderá seus arquivos, mas não tenho certeza.
