@@ -5,25 +5,24 @@
 #include <string>
 #include <algorithm>  // Para usar swap
 #include <random>     // Para random_device, mt19937 e uniform_int_distribution
+#include "Carta.h"
 
 using namespace std;
 
 struct Node{
-    //dados contidos no nó
-    int numCarta;
-    string corCarta;
+    Carta carta; // Objeto Carta que contém os dados da carta
     Node* ptrProximo; //ponteiro que aponta para o proximo nó
+
+    Node(const Carta& c) : carta(c), ptrProximo(nullptr) {}
 };
 
 class Baralho{
 private:
     Node* ptrTopo;
-    string cartaTopo[2];
-    string matrizCartas[2][44];
-
 public:
     Baralho();
-
+    
+    ~Baralho();
     /*
     métodos
     */
@@ -32,10 +31,10 @@ public:
     bool estaVazia();
 
     //método que adiciona um elemento ao ptrTopo da fila
-    void adicionaElemento(int snumCarta, string scorCarta);
+    void adicionaElemento(const Carta& novaCarta);
 
     //método para remover um item do ptrTopo da fila
-    void removeElemento(int& snumCarta, string& scorCarta);
+    void removeElemento();
 
     //método para mostrar cor do topo
     int numTopo();
@@ -44,7 +43,7 @@ public:
     string corTopo();
  
     //método para mostrar elemento do topo
-    void elementoTopo();
+    string elementoTopo();
 
     //método para criar o baralho
     void criarBaralho();
@@ -53,18 +52,11 @@ public:
     void varrerPilha();
 
     //método para embaralhar a matriz
-    void embaralha();
-
-    //método para imprimir a matriz embaralhada:
-    void imprimeMatriz();
+    void embaralhar();
 
     //método para esvaziar pilha
     void esvaziaPilha();
 
-    //método para voltar a matriz para pilha
-    void converteMatriz(Baralho& b);
-
 };
-
 
 #endif
