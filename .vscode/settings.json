@@ -2,6 +2,8 @@
     "files.associations": {
         "aprendendopilha": "cpp",
         "iostream": "cpp",
-        "codigoprojeto": "cpp"
+        "codigoprojeto": "cpp",
+        "string": "cpp",
+        "pilhabasica": "cpp"
     }
 }
