@@ -83,7 +83,7 @@ void Baralho::removeElemento(){
         ptrTopo = ptrTopo->ptrProximo;
         delete aux;
     } else{
-        cout << "Baralho esta vazio." << endl;
+        cout << "\n\n------Baralho esta vazio------\n\n" << endl;
     }
 
 }
@@ -93,7 +93,7 @@ string Baralho::numTopo(){
     if (!estaVazia()){
         return ptrTopo->carta.getNumero();
     }else{
-        cout << " A pilha vazia ";
+        cout << "\n\n------A Pilha Esta Vazia------\n\n";
         return "-1";
     }
 }
@@ -103,7 +103,7 @@ string Baralho::corTopo(){
     if (!estaVazia()){
         return ptrTopo->carta.getCor();
     }else{
-        cout << " A pilha vazia ";
+        cout << "\n\n------A Pilha Esta Vazia------\n\n";
         return "-1";
     }
 }
@@ -122,10 +122,12 @@ void Baralho::varrerPilha(){
         cout << "O baralho esta vazio." << endl;
         return;
     }
+    cout << "\n\n------Varrendo Cartas------ \n\n";
     while (aux != nullptr) {
         aux->carta.mostrar();
         aux = aux->ptrProximo;
     }
+    cout << "\n\n------Varredura Finalizada ------\n\n";
 }
 
 void Baralho::embaralhar() {
@@ -163,6 +165,7 @@ void Baralho::esvaziaPilha() {
         return;
     }
     else{
+        if(!estaVazia()){cout << "\n\n------Removendo Todas as Cartas------\n\n ";}
         while (!estaVazia()) {
             Carta cartaRemovida = ptrTopo->carta;
             Node* aux = ptrTopo;
@@ -172,6 +175,6 @@ void Baralho::esvaziaPilha() {
 
             cout << "Carta " << cartaRemovida.getNumero() << " " << cartaRemovida.getCor() << " deletada com sucesso." << endl;
         }
-        cout << "Pilha esvaziada completamente." << endl;
+        cout << "\n\n------Pilha Esvaziada Completamente------\n\n" << endl;
     }
 }

@@ -8,9 +8,9 @@
             "args": [
                 "-g",
                 "main.cpp",
-                "Baralho.cpp",
-                "Carta.cpp",
-                "Jogador.cpp",
+                "Baralho/Baralho.cpp",
+                "Cartas/Carta.cpp",
+                "Jogador/Jogador.cpp",
                 "-o",
                 "main"
             ],
