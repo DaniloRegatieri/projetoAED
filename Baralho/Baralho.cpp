@@ -39,7 +39,7 @@ void Baralho::criarBaralho(){
     string cores[] = {"verde", "vermelho", "azul", "amarelo"};
     string especial[] = {"bloqueio", "+2", "inverter"};
     for (const string& cor : cores) {
-        for (int i = 0; i <= 10; i++) {
+        for (int i = 0; i < 10; i++) {
             // Cria um objeto Carta
             Carta novaCarta(to_string(i), cor);
             // Adiciona à pilha usando a sua lógica
