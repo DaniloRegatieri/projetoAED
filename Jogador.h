@@ -5,7 +5,7 @@
 #include <string>
 #include <list>
 
-#include "../Cartas/Carta.h"
+#include "Carta.h"
 
 using namespace std;
 
@@ -24,6 +24,8 @@ public:
     int getNumeroCartas() const;
     void setNome(const string& nome);
     void setId(const int id);
+    bool temJogadaValida(const Carta& cartaMesa, const string& corAtual) const;
+    Carta verCarta(int indice)const;
 };
 
 #endif

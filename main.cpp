@@ -1,60 +1,63 @@
-/* inicio do código do projeto de AED*/
 #include <iostream>
-#include <string>
-#include <algorithm>  // Para usar swap
-#include <random>     // Para random_device, mt19937 e uniform_int_distribution
+#include <vector>
+#include <list>
+#include <limits> // Para limpar o buffer do cin
 
-#include "Baralho/Baralho.h" // temos "Baralho/Baralho.h", porque o arquivo Baralho.h está na pasta Baralho
-#include "Cartas/Carta.h"
-#include "Jogador/Jogador.h" // temos "Jogador/Jogador.h", porque o arquivo Jogador.h está na pasta Jogador
-/*
------------------------------------------------------
-Provavelmente vai ter que fazer o mesmo com o jogador
------------------------------------------------------
-*/
+// Incluímos apenas o "cérebro" do jogo.
+// O Jogo.h já inclui as outras classes que ele precisa.
+#include "Game.h"
 
-using namespace std;
+// Função auxiliar para limpar a tela de forma simples (funciona em Linux/Mac)
+void limparTela() {
+    // A sequência \033[2J limpa a tela e \033[H move o cursor para o topo.
+    std::cout << "\033[2J\033[H";
+}
 
 int main() {
-    // 1. Cria um baralho (que começa vazio)
-    Baralho meuBaralho;
-    Jogador jogador1("Heitor", 1);
+    try {
+        limparTela();
+        std::cout << "===============================" << std::endl;
+        std::cout << "      BEM-VINDO AO JOGO!       " << std::endl;
+        std::cout << "===============================" << std::endl;
 
-    if(meuBaralho.estaVazia()){
-        cout << "O baralho esta vazio." << endl;
-    } else{
-        cout << "O baralho nao esta vazio." << endl;
+        // --- PASSO 1: CONFIGURAR A PARTIDA ---
+        int numJogadores = 0;
+        while (numJogadores < 2 || numJogadores > 4) {
+            std::cout << "\nQuantos jogadores (2 a 4)? ";
+            std::cin >> numJogadores;
+
+            if (std::cin.fail() || numJogadores < 2 || numJogadores > 4) {
+                std::cout << "Numero invalido. Por favor, digite um numero entre 2 e 4." << std::endl;
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                numJogadores = 0;
+            }
+        }
+
+        std::list<Jogador> jogadores;
+        for (int i = 0; i < numJogadores; ++i) {
+            std::string nome;
+            std::cout << "Digite o nome do jogador " << i + 1 << ": ";
+            std::cin >> nome;
+            jogadores.emplace_back(nome, i);
+        }
+
+        // --- PASSO 2: CRIAR O OBJETO JOGO ---
+        std::cout << "\nCriando a partida com " << numJogadores << " jogadores..." << std::endl;
+        Game partida(jogadores);
+
+
+       
+        
+        partida.iniciarPartida();
+
+    } catch (const std::exception& e) {
+        // --- PASSO 4: TRATAR ERROS ---
+        std::cerr << "\n!! Ocorreu um erro inesperado que encerrou o jogo !!" << std::endl;
+        std::cerr << "Detalhe do erro: " << e.what() << std::endl;
+        return 1; // Retorna 1 para indicar que o programa terminou com erro
     }
-    // 2. Preenche o baralho com as cartas padrão
-    meuBaralho.criarBaralho();
-    
-    cout<<"Baralho criado\n";
 
-    cout << "--- BARALHO ORDENADO (EM ORDEM DE INSERCAO) ---" << endl;
-    meuBaralho.varrerPilha();
-
-    meuBaralho.adicionaElemento(Carta("5", "Vermelho"));
-    meuBaralho.adicionaElemento(Carta("5", "Vermelho"));
-
-    meuBaralho.removeElemento();
-
-    std::cout << "Numero Topo: " << meuBaralho.numTopo() << std::endl;
-    std::cout << "Cor Topo: " << meuBaralho.corTopo() << std::endl;
-    std::cout << "Carta Topo: " << meuBaralho.elementoTopo() << std::endl;
-
-    // 3. Embaralha as cartas
-    cout << "\n... Embaralhando as cartas ...\n" << endl;
-    meuBaralho.embaralhar();
-
-    cout << "--- BARALHO EMBARALHADO ---" << endl;
-    meuBaralho.varrerPilha();
-
-    jogador1.comprarCarta(Carta("3", "Azul"));
-    jogador1.comprarCarta(Carta("7", "Verde"));
-    cout << jogador1.getNumeroCartas() << endl;
-    jogador1.mostrarMao();
-    jogador1.descartarCarta(0);
-    jogador1.mostrarMao();
-
-    return 0; // O destrutor do ~Baralho() será chamado automaticamente aqui
+    std::cout << "\nObrigado por jogar!" << std::endl;
+    return 0; // Sucesso
 }
