@@ -5,7 +5,7 @@
 #include <string>
 #include <list>
 
-#include "Carta.h"
+#include "../Cartas/Carta.h"
 
 using namespace std;
 
