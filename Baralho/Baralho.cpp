@@ -53,9 +53,9 @@ void Baralho::criarBaralho(){
             adicionaElemento(novaCartaEspecial);
             adicionaElemento(novaCartaEspecial);
         }
-        Carta novaCartaCoringa1("+4", "preto");
+        Carta novaCartaCoringa1("+4", "");
         adicionaElemento(novaCartaCoringa1);
-        Carta novaCartaCoringa2("escolha_cor", "preto");
+        Carta novaCartaCoringa2("escolha_cor", "");
         adicionaElemento(novaCartaCoringa2);
     }
 }
@@ -112,7 +112,7 @@ string Baralho::corTopo(){
 //método para mostrar elemento do topo
 string Baralho::elementoTopo(){
     Carta cartaTopo = ptrTopo->carta;
-    return "Carta do topo: " + cartaTopo.getNumero() + " " + cartaTopo.getCor();
+    return cartaTopo.getNumero() + " " + cartaTopo.getCor();
 }
 
 //método para varrer a pilha
