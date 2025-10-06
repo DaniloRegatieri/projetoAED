@@ -124,7 +124,7 @@ void Baralho::varrerPilha(){
     }
     cout << "\n\n------Varrendo Cartas------ \n\n";
     while (aux != nullptr) {
-        aux->carta.mostrar();
+        cout << aux->carta.mostrar() << endl;
         aux = aux->ptrProximo;
     }
     cout << "\n\n------Varredura Finalizada ------\n\n";
