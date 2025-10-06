@@ -1,15 +1,16 @@
 {
     "configurations": [
         {
-            "name": "Linux",
+            "name": "GCC",
             "includePath": [
                 "${workspaceFolder}/**"
             ],
             "defines": [],
-            "compilerPath": "/usr/bin/clang",
+            // Verifique se o caminho para o seu g++.exe está correto. Este é um caminho comum.
+            "compilerPath": "C:/msys64/mingw64/bin/g++.exe",
             "cStandard": "c17",
             "cppStandard": "c++17",
-            "intelliSenseMode": "linux-clang-x64"
+            "intelliSenseMode": "windows-gcc-x64"
         }
     ],
     "version": 4

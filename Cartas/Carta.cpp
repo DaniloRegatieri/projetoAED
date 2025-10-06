@@ -1,20 +1,17 @@
 #include "Carta.h"
+#include <iostream>
 
-// Implementação do Construtor
-Carta::Carta(const string& num, const string& c) : numero(num), cor(c) {
-    // O corpo pode ser vazio, pois a lista de inicialização já fez o trabalho
+// A implementação (o "como fazer") das funções declaradas no .h
+Carta::Carta(std::string v, std::string c) : valor(v), cor(c) {}
+
+std::string Carta::getValor() const {
+    return this->valor;
 }
 
-// Implementação dos Getters
-string Carta::getNumero() const {
-    return this->numero;
-}
-
-string Carta::getCor() const {
+std::string Carta::getCor() const {
     return this->cor;
 }
 
-// Implementação do método para mostrar
 void Carta::mostrar() const {
-    cout << "Carta: " << this->numero << " " << this->cor << endl;
+    std::cout << this->valor << " " << this->cor;
 }

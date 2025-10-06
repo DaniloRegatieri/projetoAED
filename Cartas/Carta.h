@@ -2,25 +2,21 @@
 #define CARTA_H
 
 #include <string>
-#include <iostream>
 
-using namespace std;
-
+// A "planta" da classe Carta. Declara o que ela tem e o que ela faz.
 class Carta {
 private:
-    string numero;
-    string cor;
+    std::string valor;
+    std::string cor;
 
 public:
-    // Construtor: cria uma nova carta com um número e uma cor
-    Carta(const string& num, const string& c);
+    // Construtor
+    Carta(std::string v, std::string c);
 
-    // Métodos para obter os valores da carta (Getters)
-    string getNumero() const;
-    string getCor() const;
-
-    // Método para mostrar a carta no console
+    // Funções (métodos)
+    std::string getValor() const;
+    std::string getCor() const;
     void mostrar() const;
 };
 
-#endif
+#endif //CARTA_H

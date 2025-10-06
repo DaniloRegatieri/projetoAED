@@ -1,18 +1,26 @@
 #ifndef JOGADOR_H
 #define JOGADOR_H
 
-#include <iostream>
 #include <string>
-#include <algorithm>  // Para usar swap
-#include <random>     // Para random_device, mt19937 e uniform_int_distribution
+#include <vector>
+#include "../Cartas/Carta.h"
+#include "../Baralho/Baralho.h"
 
-#include "Baralho.h"
-
-using namespace std;
-
-class Jogador{
+class Jogador {
 private:
+    std::string nome;
+    std::vector<Carta> mao;
 
+public:
+    Jogador(std::string n);
+
+    void comprarCarta(Baralho &baralhoDeCompra);
+    Carta jogarCarta(int indice);
+    void verMao() const;
+    
+    std::string getNome() const;
+    size_t numeroDeCartas() const;
+    const std::vector<Carta>& getMao() const;
 };
 
-#endif
+#endif //JOGADOR_H
