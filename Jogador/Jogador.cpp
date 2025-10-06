@@ -4,7 +4,7 @@
 #include <random>     // Para random_device, mt19937 e uniform_int_distribution
 
 #include "Jogador.h"
-#include "Baralho.h"
+#include "../Baralho/Baralho.h"
 
 using namespace std;
 
