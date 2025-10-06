@@ -7,18 +7,25 @@
             "command": "g++",
             "args": [
                 "-g",
-                "main.cpp",
-                "Baralho/Baralho.cpp",
-                "Cartas/Carta.cpp",
-                "Jogador/Jogador.cpp",
+                "${workspaceFolder}\\main.cpp",
+                "${workspaceFolder}\\Baralho\\Baralho.cpp",
+                "${workspaceFolder}\\Cartas\\Carta.cpp",
+                "${workspaceFolder}\\Jogador\\Jogador.cpp",
                 "-o",
-                "main"
+                "${workspaceFolder}\\output\\main.exe"
             ],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "panel": "shared"
+            },
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
-            "problemMatcher": ["$gcc"]
+            "problemMatcher": [
+                "$gcc"
+            ]
         }
     ]
 }
