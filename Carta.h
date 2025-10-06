@@ -20,7 +20,7 @@ public:
     string getCor() const;
 
     // Método para mostrar a carta no console
-    void mostrar() const;
+    string mostrar() const;
 };
 
 #endif

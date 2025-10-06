@@ -5,12 +5,14 @@
 #include <random>     // Para random_device, mt19937 e uniform_int_distribution
 
 #include "Baralho.h"
+#include "Jogador.h"
 
 using namespace std;
 
 int main() {
     // 1. Cria um baralho (que começa vazio)
     Baralho meuBaralho;
+    Jogador jogador1("Heitor", 1);
 
     if(meuBaralho.estaVazia()){
         cout << "O baralho esta vazio." << endl;
@@ -25,7 +27,7 @@ int main() {
     cout << "--- BARALHO ORDENADO (EM ORDEM DE INSERCAO) ---" << endl;
     meuBaralho.varrerPilha();
 
-    meuBaralho.adicionaElemento(Carta(5, "Vermelho"));
+    meuBaralho.adicionaElemento(Carta("5", "Vermelho"));
 
     meuBaralho.removeElemento();
 
@@ -40,7 +42,12 @@ int main() {
     cout << "--- BARALHO EMBARALHADO ---" << endl;
     meuBaralho.varrerPilha();
 
-    meuBaralho.esvaziaPilha();
+    jogador1.comprarCarta(Carta("3", "Azul"));
+    jogador1.comprarCarta(Carta("7", "Verde"));
+    cout << jogador1.getNumeroCartas() << endl;
+    jogador1.mostrarMao();
+    jogador1.descartarCarta(0);
+    jogador1.mostrarMao();
 
     return 0; // O destrutor do ~Baralho() será chamado automaticamente aqui
 }
