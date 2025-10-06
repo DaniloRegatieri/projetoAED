@@ -5,7 +5,7 @@
             "name": "C++ Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/main",    // executável
+            "program": "${workspaceFolder}/output/main.exe",    // executável
             "args": [],                              // argumentos do programa
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",             // diretório de trabalho

@@ -56,5 +56,6 @@ int main() {
     jogador1.descartarCarta(0);
     jogador1.mostrarMao();
 
-    return 0; // O destrutor do ~Baralho() será chamado automaticamente aqui
+    //Obs: nem precisa do return 0, o compilador em c++ já chama automaticamente
+    return 0; //O destrutor do ~Baralho() será chamado automaticamente aqui
 }
