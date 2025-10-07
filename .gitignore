@@ -1,0 +1,16 @@
+# Ignorar binários e arquivos de build
+output/
+*.exe
+*.o
+*.obj
+*.exe~
+*.stackdump
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos temporários do editor
+*.swp
+*.swo
+.vscode/
