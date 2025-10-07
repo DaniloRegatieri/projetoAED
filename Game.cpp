@@ -20,10 +20,13 @@ void Game::iniciarPartida(){
         proximoJogador();
     }
 
+    int indiceVencedor = jogadorAtual - 1;
+    if (indiceVencedor < 0) indiceVencedor = jogadores.size() - 1;
+    
     cout << "\n=== FIM DE JOGO ===" << endl;
     // Anuncia o vencedor (o último jogador a jogar antes da condição de vitória)
     auto it = jogadores.begin();
-    std::advance(it, jogadorAtual);
+    std::advance(it, indiceVencedor);
     cout << "O jogador " << it->getNome() << " venceu!" << endl;
 }
 
@@ -71,7 +74,7 @@ void Game::executarTurno(){
     Carta cartaMesa = monteDeDescarte.elementoTopo();
 
     cout << "\n--- Turno de " << jogadorDaVez.getNome() << " ---" << endl;
-    cout << "Carta no topo do descarte: " << cartaMesa.mostrar() << endl;
+    cout << "Carta da mesa: " << cartaMesa.mostrar() << endl;
     jogadorDaVez.mostrarMao();
 
     if (!jogadorDaVez.temJogadaValida(cartaMesa, this->corAtualDoJogo)) {
@@ -199,7 +202,7 @@ void Game::aplicarEfeitoCarta(const Carta& cartaJogada) {
                     }
                 }
 
-                string cores[] = {"Verde", "Vermelho", "Azul", "Amarelo"};
+                string cores[] = {"verde", "vermelho", "azul", "amarelo"};
                 corAtualDoJogo = cores[escolhaCor - 1];
                 cout << ">> A nova cor do jogo eh " << corAtualDoJogo << "! <<" << endl;
                 return;
@@ -209,6 +212,7 @@ void Game::aplicarEfeitoCarta(const Carta& cartaJogada) {
         int escolhaCor = 0;
                 // Loop para garantir que o jogador escolha uma opção válida
                 while (escolhaCor < 1 || escolhaCor > 4) {
+                    cout << "1: Verde, 2: Vermelho, 3: Azul, 4: Amarelo" << endl;
                     cout << "Digite sua escolha (1-4): ";
                     cin >> escolhaCor;
                     if (cin.fail() || escolhaCor < 1 || escolhaCor > 4) {
@@ -219,7 +223,7 @@ void Game::aplicarEfeitoCarta(const Carta& cartaJogada) {
                     }
                 }
 
-        string cores[] = {"Verde", "Vermelho", "Azul", "Amarelo"};
+        string cores[] = {"verde", "vermelho", "azul", "amarelo"};
         corAtualDoJogo = cores[escolhaCor - 1];
         cout << ">> A nova cor do jogo eh " << corAtualDoJogo << "! <<" << endl;
             { // Usamos chaves para criar um escopo para a variável 'indiceAlvo'

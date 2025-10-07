@@ -73,7 +73,7 @@ bool Baralho::estaVazia(){
 }
 
 //método que adiciona um elemento ao ptrTopo da fila
-Carta Baralho::adicionaElemento(const Carta& novaCarta) {
+void Baralho::adicionaElemento(const Carta& novaCarta) {
     Node* novo = new Node(novaCarta); // Cria um novo nó já com a carta
     novo->ptrProximo = ptrTopo;
     ptrTopo = novo;
@@ -114,8 +114,11 @@ string Baralho::corTopo(){
  
 //método para mostrar elemento do topo
 Carta Baralho::elementoTopo(){
-    Carta cartaTopo = ptrTopo->carta;
-    return cartaTopo;
+    if (estaVazia()) {
+        cout << "Erro: Tentando acessar o topo de um baralho vazio!" << endl;
+        throw runtime_error("Baralho vazio em elementoTopo()");
+    }
+    return ptrTopo->carta;
 }
 
 //método para varrer a pilha

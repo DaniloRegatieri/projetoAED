@@ -46,10 +46,14 @@ int main() {
         std::cout << "\nCriando a partida com " << numJogadores << " jogadores..." << std::endl;
         Game partida(jogadores);
 
-
-       
+        std::cout << "Pressione Enter para comecar...";
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cin.get();
+        limparTela();
         
         partida.iniciarPartida();
+       
+        
 
     } catch (const std::exception& e) {
         // --- PASSO 4: TRATAR ERROS ---

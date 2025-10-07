@@ -31,7 +31,7 @@ public:
     bool estaVazia();
 
     //método que adiciona um elemento ao ptrTopo da fila
-    Carta adicionaElemento(const Carta& novaCarta);
+    void adicionaElemento(const Carta& novaCarta);
 
     //método para remover um item do ptrTopo da fila
     void removeElemento();
