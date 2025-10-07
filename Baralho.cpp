@@ -4,6 +4,7 @@
 #include <random>     // Para random_device, mt19937 e uniform_int_distribution
 
 #include "Baralho.h"
+#include "Carta.h"
 
 using namespace std;
 
@@ -53,9 +54,11 @@ void Baralho::criarBaralho(){
             adicionaElemento(novaCartaEspecial);
             adicionaElemento(novaCartaEspecial);
         }
-        Carta novaCartaCoringa1("+4", "");
+    }
+    for (int i = 0; i < 4; ++i) {
+        Carta novaCartaCoringa1("+4", "preto");
         adicionaElemento(novaCartaCoringa1);
-        Carta novaCartaCoringa2("escolha_cor", "");
+        Carta novaCartaCoringa2("escolha_cor", "preto");
         adicionaElemento(novaCartaCoringa2);
     }
 }
@@ -110,9 +113,12 @@ string Baralho::corTopo(){
 
  
 //método para mostrar elemento do topo
-string Baralho::elementoTopo(){
-    Carta cartaTopo = ptrTopo->carta;
-    return cartaTopo.getNumero() + " " + cartaTopo.getCor();
+Carta Baralho::elementoTopo(){
+    if (estaVazia()) {
+        cout << "Erro: Tentando acessar o topo de um baralho vazio!" << endl;
+        throw runtime_error("Baralho vazio em elementoTopo()");
+    }
+    return ptrTopo->carta;
 }
 
 //método para varrer a pilha

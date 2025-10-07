@@ -4,7 +4,7 @@
 #include <random>    // Para random_device, mt19937 e uniform_int_distribution
 
 #include "Jogador.h"
-#include "../Baralho/Baralho.h"
+#include "Baralho.h"
 
 using namespace std;
 
@@ -90,4 +90,22 @@ void Jogador::mostrarMao() const
 int Jogador::getNumeroCartas() const
 {
     return this->mao.size();
+}
+
+bool Jogador::temJogadaValida(const Carta& cartaMesa, const std::string& corAtual) const {
+    for (const auto& cartaNaMao : mao) {
+        if (cartaNaMao.getCor() == corAtual || cartaNaMao.getNumero() == cartaMesa.getNumero() || cartaNaMao.getNumero() == "+4" || cartaNaMao.getNumero() == "escolha_cor") {
+            return true;
+        }
+    }
+    return false;
+}
+
+Carta Jogador::verCarta(int indice) const {
+    if (indice < 0 || indice >= mao.size()) {
+        throw std::out_of_range("Indice da carta invalido.");
+    }
+    auto it = mao.begin();
+    std::advance(it, indice);
+    return *it; // Retorna a carta na posição especificada
 }

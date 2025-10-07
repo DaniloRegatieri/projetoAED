@@ -5,7 +5,7 @@
 #include <string>
 #include <algorithm>  // Para usar swap
 #include <random>     // Para random_device, mt19937 e uniform_int_distribution
-#include "../Cartas/Carta.h" //"../" significa sair da pasta em que está localizado + explicação no main
+#include "Carta.h" //"../" significa sair da pasta em que está localizado + explicação no main
 
 using namespace std;
 
@@ -43,7 +43,7 @@ public:
     string corTopo();
  
     //método para mostrar elemento do topo
-    string elementoTopo();
+    Carta elementoTopo();
 
     //método para criar o baralho
     void criarBaralho();
