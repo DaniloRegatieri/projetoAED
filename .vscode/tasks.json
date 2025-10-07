@@ -7,12 +7,12 @@
             "command": "g++",
             "args": [
                 "-g",
-                "${workspaceFolder}\\main.cpp",
-                "${workspaceFolder}\\Baralho\\Baralho.cpp",
-                "${workspaceFolder}\\Cartas\\Carta.cpp",
-                "${workspaceFolder}\\Jogador\\Jogador.cpp",
+                "${workspaceFolder}/main.cpp",
+                "${workspaceFolder}/Baralho/Baralho.cpp",
+                "${workspaceFolder}/Cartas/Carta.cpp",
+                "${workspaceFolder}/Jogador/Jogador.cpp",
                 "-o",
-                "${workspaceFolder}\\output\\main.exe"
+                "${workspaceFolder}/output/main.exe"
             ],
             "presentation": {
                 "echo": true,
